@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+<data>
+    <variable
+        name="weather"
+        type="shdv.iotdev.rxtraining.data.WeatherModel" />
+    <import type="android.text.Html"/>
+</data>
+    
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Weather Map"
+        android:id="@+id/helloLabel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/inputCity"
+        app:layout_constraintTop_toBottomOf="@id/helloLabel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/queryCityButton"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/queryCityButton"
+        android:textSize="20sp"
+        android:text="Найти"
+        app:layout_constraintTop_toBottomOf="@id/helloLabel"
+        app:layout_constraintLeft_toRightOf="@id/inputCity"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        style="@style/ResultsLabelStyle"
+        android:id="@+id/city_name"
+        app:layout_constraintTop_toBottomOf="@id/inputCity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@{@string/city_name + weather.city}"
+        />
+
+    <TextView
+        style="@style/ResultsLabelStyle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/weather_description"
+        app:layout_constraintTop_toBottomOf="@id/city_name"
+        android:text="@{`Сейчас ` + weather.weatherDescription}"
+        />
+
+    <TextView
+        style="@style/ResultsLabelStyle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/temperature"
+        app:layout_constraintTop_toBottomOf="@id/weather_description"
+        android:text="@{`Температура: ` + weather.temperature}"
+        />
+
+    <TextView
+        style="@style/ResultsLabelStyle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/pressure"
+        app:layout_constraintTop_toBottomOf="@id/temperature"
+        android:text="@{`Давление: ` + weather.pressure}"
+        />
+
+    <TextView
+        style="@style/ResultsLabelStyle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/humidity"
+        app:layout_constraintTop_toBottomOf="@id/pressure"
+        android:text="@{`Влажность: ` + weather.humidity}"
+        />
+
+    <TextView
+        style="@style/ResultsLabelStyle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/wind"
+        app:layout_constraintTop_toBottomOf="@id/humidity"
+        android:text="@{`Ветер: ` + weather.windSpeed + ` ` + weather.windDeg}"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
